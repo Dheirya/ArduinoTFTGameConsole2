@@ -100,13 +100,17 @@ void menu_drawThickRect(int R, int G, int B, int x1, int y1, int x2, int y2) {
   lcd.drawRect(x1 + 2, y1 + 2, x2 - 2, y2 - 2);
 }
 
-void menu_setup() {
-  lcd.setColor(32, 32, 32);
-  lcd.fillRect(0, 0, 480, 28);
+void print_top() {
   lcd.setColor(255, 255, 255);
   lcd.setBackColor(32, 32, 32);
   lcd.setFont(BigFont);
-  lcd.print("DELTech Game Console V2", CENTER, 5);  
+  lcd.print("DELTech Game Console V2: " + String(readPercent()) + "%", CENTER, 5);  
+}
+
+void menu_setup() {
+  lcd.setColor(32, 32, 32);
+  lcd.fillRect(0, 0, 480, 28);
+  print_top();
   menu_draw();
   menu_drawThickRect(0, 0, 0, menuCurSelection * 120, 28, 120 + (menuCurSelection * 120), 174);
   menuSetupDone = true;
@@ -141,6 +145,7 @@ void menu_loop() {
     }
     if (menuLoopFrames == 600) {
       menu_selectorHighlight(true);
+      print_top();
     }
     menuLoopFrames++;
     if (menuLoopFrames >= 1200) {
