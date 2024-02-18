@@ -1,5 +1,6 @@
 #include <UTFT.h>
 #include <EEPROM.h>
+#include <CPUVolt.h>
 #define ButtonR 12
 #define ButtonH 13
 
@@ -9,6 +10,7 @@ extern uint8_t SevenSegNumFont[];
 
 UTFT lcd(ILI9486, 38, 39, 40, 41);
 void(*reset_func)(void) = 0;
+int readPercent() {return int((readVcc()) * 100.0 / 5000);}
 
 void screen_setup() {
   lcd.InitLCD();
