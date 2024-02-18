@@ -25,7 +25,7 @@ void setup() {
 void loop() {
   if (!main_displayedLogo) {
     main_draw_startup();
-    delay(3500);
+    delay(3000);
     main_displayedLogo = true;
   } else {
     joystick_moveUpd();
